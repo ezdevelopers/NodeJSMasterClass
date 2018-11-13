@@ -110,7 +110,7 @@ handler = {}
 //define sample handler
 handler.hello = function(data, callback){
     //callback a http status code and the payload object
-    callback(200,{'Welcome':'Hello and welcom to our API. Explore all our endpoints'});
+    callback(200,{'Welcome':'Hello and welcome to our API. Explore all our endpoints'});
 }
 
 //define handler notfound
@@ -120,5 +120,5 @@ handler.notfound = function(data, callback){
 
 //create the router
 var router = {
-    'hello':handler.sample
+    'hello':handler.hello
 }
