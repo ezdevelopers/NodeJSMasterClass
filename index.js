@@ -108,9 +108,9 @@ var unifiedServer = function(req,res){
 handler = {}
 
 //define sample handler
-handler.sample = function(data, callback){
+handler.hello = function(data, callback){
     //callback a http status code and the payload object
-    callback(406,{'name':'sample handler'});
+    callback(200,{'Welcome':'Hello and welcom to our API. Explore all our endpoints'});
 }
 
 //define handler notfound
@@ -120,5 +120,5 @@ handler.notfound = function(data, callback){
 
 //create the router
 var router = {
-    'sample':handler.sample
+    'hello':handler.sample
 }
