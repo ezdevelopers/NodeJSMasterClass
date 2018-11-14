@@ -1,16 +1,17 @@
 /*
 * Primary file for the API
-*
 */
-//Dependencies
 
+//Dependencies
 var http = require('http');
 var https = require('https');
 var httpsCertificate = require('./https');
 var url = require('url');
-var fs = require('fs');
 var StringDecoder = require('string_decoder').StringDecoder;
-var config = require("./config");
+var config = require('./lib/config');
+var handler = require('./lib/handler');
+var helpers =require('./lib/helpers');
+
 
 //create the https server
 var httpServer = http.createServer(function(req,res){
@@ -71,7 +72,7 @@ var unifiedServer = function(req,res){
             'queryStringObject':queryStringObject,
             'method':method,
             'headers':headers,
-            'payload':buffer
+            'payload':helpers.parseJsonToObject(buffer)
         }
 
         chosenHandler(data, function(statusCode, payload){
@@ -104,21 +105,8 @@ var unifiedServer = function(req,res){
 }
 
 
-//define the handlers
-handler = {}
-
-//define sample handler
-handler.hello = function(data, callback){
-    //callback a http status code and the payload object
-    callback(200,{'Welcome':'Hello and welcome to our API. Explore all our endpoints'});
-}
-
-//define handler notfound
-handler.notfound = function(data, callback){
-    callback(404);
-}
-
 //create the router
 var router = {
-    'hello':handler.hello
+    'hello':handler.hello,
+    'user': handler.user
 }
