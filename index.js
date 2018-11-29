@@ -73,7 +73,7 @@ var unifiedServer = function(req,res){
             'method':method,
             'headers':headers,
             'payload':helpers.parseJsonToObject(buffer)
-        }
+        } 
 
         chosenHandler(data, function(statusCode, payload){
             //use the ststus code called by by the handler or default to 200
@@ -108,5 +108,7 @@ var unifiedServer = function(req,res){
 //create the router
 var router = {
     'hello':handler.hello,
-    'user': handler.user
+    'users': handler.user,
+    'tokens':handler.tokens,
+    'checks':handler.checks
 }
